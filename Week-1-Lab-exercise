@@ -1,0 +1,258 @@
+                               
+                                                  COMPILER DESIGN
+        IMPLEMENTATION OF LANGUAGE RECONGNISER
+
+                                                                                            Varshitha gopu
+                                                                                         AP18110010568
+                                                                                               Sec-I                      
+Program 1:
+Implement a language recogniser which accepts set of all strings over the alphabet ∑={a,b}
+containing an even number of a’s and an even number of b’s.
+Description:
+The acceptable strings of the language are ε(Null string), aa, bb, abba, babbab etc.
+Deterministic Finite Automata for the given language is given below:
+DFA M=(Q,∑,δ,Q0,F) Where
+Q=Set of all states ={Q0,Q1,Q2,Q3}
+∑=Input Alphabet={a,b},
+Start state is Q0
+F=Set of all final States={ Q0}
+And the transitions are defined in the transition diagram   
+ 
+Algorithm: Language recognizer
+Input:
+input //input string
+Output:
+Algorithm prints a message
+“String accepted”: If the input is acceptable by the language,
+“String not accepted” otherwise,
+“Invalid token”: If the input string contains symbols other than input alphabet.
+Method:
+state=0 //initial state
+while((current=input[i++])!='\0'){
+switch(state)
+case 0: if(current=='a') state=1;
+else if(current=='b') state=2;
+else
+Print "Invalid token" ; exit;
+case 1: if(current=='a') state=0;
+else if(current=='b') state=3;
+else
+Print "Invalid token" ; exit;
+case 2: if(current=='a') state=3;
+else if(current=='b') state=0;
+else
+Print "Invalid token" ; exit;
+case 3: if(current=='a') state=2;
+else if(current=='b') state=1;
+else
+Print "Invalid token" ; exit;
+end switch
+end while
+//Print output
+if(state==0)
+Print ”String accepted”
+else
+Print ”String not accepted”                   
+
+Test cases:      
+INPUT	EXPECTED OUTPUT
+aabb	String accepted
+abab	String accepted
+aaabb	String accepted
+aaa	String not accepted
+abcd	Invalid token
+
+
+                                                  C CODE
+#include<stdio.h>
+void main(){
+int state=0,i=0;
+char current,input[20];
+printf("Enter input string \t :");
+scanf("%s",input);
+while((current=input[i++])!='\0'){
+switch(state){
+case 0: if(current=='a')
+state=1;
+else if(current=='b')
+state=2;
+else{
+printf("Invalid token");
+exit(0);
+}
+break;
+case 1: if(current=='a')
+state=0;
+else if(current=='b')
+state=3;
+else{
+printf("Invalid token");
+exit(0);
+}
+break;
+case 2: if(current=='a')
+state=3;
+else if(current=='b')
+state=0;
+else{
+printf("Invalid token");
+exit(0);
+}
+break;
+case 3: if(current=='a')
+state=2;
+else if(current=='b')
+state=1;
+else{
+printf("Invalid token");
+exit(0);
+}
+break;
+}
+}
+if(state==0)
+printf("\n\nString accepted\n\n");
+else
+printf("\n\nString not accepted\n\n");
+}
+
+             INPUT	       EXPECTED OUTPUT
+Input 1:aabb	Output 1: String accepted
+Input 2:abab	Output 2: String accepted
+Input 3:aaabb	Output 3: String accepted
+Input 4:aaa	Output 4: String not accepted
+Input 5:abcd	Output 5:Invalid token
+
+
+Program 2:
+Implementation of Language recognizer for set of all strings ending with two symbols of same type.
+Description:
+The acceptable strings of the language aa, bb, abbaa, babbabb etc.
+Deterministic Finite Automata for the given language is given below:
+DFA M=(Q,∑,δ,Q0,F) Where
+Q=Set of all states ={Q0,Q1,Q2,Q3,Q4}
+∑=Input Alphabet={a,b},
+Start state is Q0
+F=Set of all final States={ Q2,Q4}
+And the transitions are defined in the transition diagram
+ 
+
+Algorithm: Language recognizer
+Input:
+Input //input string
+Output:
+Algorithm prints a message
+“String accepted”: If the input is acceptable by the language,
+“String not accepted” otherwise,
+“Invalid token”: If the input string contains symbols other than input alphabet.
+Method:
+state=0 //initial state
+while((current=input[i++])!='\0'){
+switch(state)
+case 0: if(current=='a') state=1;
+else if(current=='b') state=3;
+else
+Print "Invalid token" ; exit;
+case 1: if(current=='a') state=2;
+else if(current=='b') state=3;
+else
+Print "Invalid token" ; exit;
+case 2: if(current=='a') state=2;
+else if(current=='b') state=3;
+else
+Print "Invalid token" ; exit;
+case 3: if(current=='a') state=1;
+else if(current=='b') state=4;
+else
+Print "Invalid token" ; exit;
+case 4: if(current=='a') state=1;
+else if(current=='b') state=4;
+else
+Print "Invalid token" ; exit;
+end switch
+end while
+//Print output
+if(state==2 || state==4)
+Print ”String accepted”
+else
+Print ”String not accepted”
+Test cases:
+Input	Expected Output
+aabb	String accepted
+ababaa	String accepted
+aaabba	String not accepted
+aaa	String not accepted
+abcd	Invalid token
+
+  C CODE
+#include <stdio.h>
+#include <stdlib.h>
+void main(){
+ int s=0,i=0;
+ char c,input[20];
+ printf("Enter the input string:");
+ scanf("%s",input);
+ while((c=input[i++])!='\0'){
+ switch(s) {
+ case 0: if(c=='a')
+ s=1;
+ else if(c=='b')
+ s=3;
+ else{
+ printf("Invalid token");
+ exit(0);
+ }
+ break;
+ case 1: if(c=='a')
+ s=2;
+ else if(c=='b')
+ s=3;
+ else{
+ printf("Invalid token");
+ exit(0);
+ }
+ break;
+ case 2: if(c=='a')
+ s=2;
+ else if(c=='b')
+ s=3;
+ else{
+ printf("Invalid token");
+ exit(0);
+ }
+ break;
+ case 3: if(c=='a')
+ s=1;
+ else if(c=='b')
+ s=4;
+ else{
+ printf("Invalid token");
+ exit(0);
+ }
+ break;
+ case 4: if(c=='a')
+ s=1;
+ else if(c=='b')
+ s=4;
+ else{
+ printf("Invalid token");
+ exit(0);
+ }
+ break;
+ }
+ }
+ if(s==2 || s==4)
+ printf("String accepted");
+ else{
+ printf("String not accepted");
+ }
+}
+
+Input	Expected Output
+aa	String accepted
+ababb	String accepted
+aaabba	String not accepted
+aaab	String not accepted
+abcd	Invalid token
+
+
