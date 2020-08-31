@@ -58,7 +58,7 @@ Test cases:
 INPUT	EXPECTED OUTPUT
 aabb	String accepted
 abab	String accepted
-aaabb	String accepted
+aaabb	String not accepted
 aaa	String not accepted
 abcd	Invalid token
 
