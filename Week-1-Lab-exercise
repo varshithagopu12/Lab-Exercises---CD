@@ -119,7 +119,7 @@ printf("\n\nString not accepted\n\n");
              INPUT	       EXPECTED OUTPUT
 Input 1:aabb	Output 1: String accepted
 Input 2:abab	Output 2: String accepted
-Input 3:aaabb	Output 3: String accepted
+Input 3:aaabb	Output 3: String not accepted
 Input 4:aaa	Output 4: String not accepted
 Input 5:abcd	Output 5:Invalid token
 
